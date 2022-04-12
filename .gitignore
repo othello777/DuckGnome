@@ -1,0 +1,9 @@
+build/.vs/
+build/obj/
+build/othello7_mod.csproj.user
+build/packages.config
+build/packages/
+othello7's_mod_compiled.dll
+othello7's_mod_compiled.hash
+Microsoft.Xna.Framework.Game.dll
+Microsoft.Xna.Framework.Graphics.dll

@@ -1,0 +1,90 @@
+1.1.7.0:
+-Added Start with 'Nade
+-Added Chaos Mode
+
+1.1.6.0:
+-Added SuperLaser
+-Added BoomPlate
+-Added FakeSword
+-Updated GrenadeGun
+
+1.1.5.7:
+-added RivalGun 
+
+1.1.5.6:
+-updated SCP a little
+
+
+1.1.5.5:
+-temporarily removed support for command permissions. working on a fix
+-hopfully it works in the workshop now
+
+
+1.1.5.4:
+-removed methodinjector.dll
+
+
+1.1.5.2:
+-did a bit of stuff (I dont remember)
+
+
+1.1.5.0:
+-added Death Pistol
+-added susej kcor, i mean, Jesus Rock
+
+
+1.1.4.0:
+-made acu-flare gun work
+-made sprites for: turboak47, acu-flaregun
+-added the sprite to rocksniper
+
+^^^Changing version system
+
+
+Version 1.1.3.2
+Major:
+
+Minor: cought exception System.NullReference
+
+Problems:
+
+
+Version 1.1.3.1
+Major:
+
+Minor: cought exception of DirectoryNotFound
+
+Problems:
+
+
+Version 1.1.3.0
+Major: 
+-added a way to remove eddited DevConsole
+
+Minor:
+
+Problems:
+-dies when not on my computer because I COUGHT THE WRONK EXEPTION ARG
+
+
+
+Started notes at 1.1.2.2
+Major:
+-added pATCH NOTES.txt
+-added GnomeConsole with new unlocked SPAWN command for online.
+
+Minor:
+didnt record them this time :PP
+
+Problems:
+-GnomeConsole does not give feedback
+
+
+
+TEMPLATE:
+Version
+Major:
+
+Minor:
+
+Problems:
