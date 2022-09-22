@@ -138,7 +138,7 @@ namespace DuckGame.othello7_mod
         // Token: 0x04000488 RID: 1160
         private Sprite _pickupSprite;
 
-        public byte bulletFireIndex;
+        //public byte bulletFireIndex;
 
         public List<Bullet> firedBullets = new List<Bullet>();
     }

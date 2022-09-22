@@ -92,7 +92,7 @@ namespace othello7_mod.src
         // Token: 0x040002AE RID: 686
         public float hSpeedSaver;
 
-        private SpriteMap _sprite;
+        //private SpriteMap _sprite;
     }
 }
 
