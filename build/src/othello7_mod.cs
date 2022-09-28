@@ -16,18 +16,18 @@ using System.IO;
 [assembly: AssemblyCompany("othello7")]
 
 // The description of the mod
-[assembly: AssemblyDescription("Adds a few guns")]
+[assembly: AssemblyDescription("Adds a few guns (a little trolling)")]
 
 // The mod's version
-[assembly: AssemblyVersion("1.1.7.0")]
+[assembly: AssemblyVersion("1.1.7.1")]
 
 namespace DuckGame.othello7_mod
 {
-    
+
 
     public class DuckGnome : Mod
     {
-        
+
         //public static bool activateConsole = true;
         //public static HarmonyInstance harmony = HarmonyInstance.Create("othello7_mod.DuckGame");
         /*
@@ -66,7 +66,7 @@ namespace DuckGame.othello7_mod
                     harmony.Patch(original, harmonymethodprefix);
 
                     DevConsole.Log("Granted command permissions", Color.Green);
-                    //injector.Inject(GnomeGlobals.GetMethod("DevConsole", "RunCommand", true), GnomeGlobals.GetMethod(typeof(GnomeConsole), "RunCommand", true));
+
                 }
                 catch (System.NullReferenceException)
                 {
@@ -79,29 +79,28 @@ namespace DuckGame.othello7_mod
 
         // The mod's priority; this property controls the load order of the mod.
         public override Priority priority
-		{
-			get { return base.priority; }
-		}
+        {
+            get { return base.priority; }
+        }
 
-		// This function is run before all mods are finished loading.
-		protected override void OnPreInitialize()
+        // This function is run before all mods are finished loading.
+        protected override void OnPreInitialize()
         {
             MonoMain.loadMessage = "Loading DuckGnome";
             Program.LogLine(string.Format("-- DuckGnome initialized on {1} at {0} --", (object)DateTime.Now.ToLongTimeString(), (object)DateTime.Now.ToShortDateString()));
             Program.main.Window.Title = "DuckGnome";
-            
 
             base.OnPreInitialize();
         }
 
-		// This function is run after all mods are loaded.
-		protected override void OnPostInitialize() {
-			base.OnPostInitialize();
+        // This function is run after all mods are loaded.
+        protected override void OnPostInitialize()
+        {
+            base.OnPostInitialize();
             Thread thread = new Thread(new ThreadStart(this.ExecuteOnceLoaded));
             thread.Start();
-            //PerformMethodInjection();
         }
-        
+
         //bimmod stuff
         private void ExecuteOnceLoaded()
         {
@@ -161,97 +160,28 @@ namespace DuckGame.othello7_mod
                 if (!Unlocks.IsUnlocked("CHAOSMODE", universalProfile))
                     universalProfile.unlocks.Add("CHAOSMODE");
             }
+            UnlockData ImpostorMode = new UnlockData()
+            {
+                name = "Sus weapon switching",
+                id = "IMPOSTORMODE",
+                type = UnlockType.Modifier,
+                cost = 0,
+                description = "random guns are switched out with DGn weapons",
+                longDescription = "...",
+                icon = 3,
+                priceTier = UnlockPrice.Cheap
+            };
+            ((List<UnlockData>)typeof(Unlocks).GetField("_allUnlocks", BindingFlags.Static | BindingFlags.NonPublic).GetValue((object)null)).Add(ImpostorMode);
+            Unlocks.modifierToByte[ImpostorMode.id] = (byte)Unlocks.allUnlocks.Count;
+            foreach (Profile universalProfile in Profiles.universalProfileList)
+            {
+                if (!Unlocks.IsUnlocked("IMPOSTORMODE", universalProfile))
+                    universalProfile.unlocks.Add("IMPOSTORMODE");
+            }
             DuckGnome.mm = new DuckGnomeMain((Mod)this);
         }
-        
+
 
         internal static DuckGnomeMain mm;
     }
-
-
-    /*
-        public class PlugInFactory<T>
-        {
-            public T CreatePlugin(string path)
-            {
-                foreach (string file in Directory.GetFiles(path, "*.dll"))
-                {
-                    foreach (Type assemblyType in Assembly.LoadFrom(file).GetTypes())
-                    {
-                        Type interfaceType = assemblyType.GetInterface(typeof(T).FullName);
-
-                        if (interfaceType != null)
-                        {
-                            return (T)Activator.CreateInstance(assemblyType);
-                        }
-                    }
-                }
-
-                return default(T);
-            }
-        }
-
-
-    //mser stuff
-    //suupor
-    
-    internal sealed class Injector
-    {
-        private readonly MethodInfo _injectorMethod;
-
-        internal static string InjectorPath
-        {
-            get
-            {
-                return ModLoader.GetMod<DuckGame.othello7_mod.DuckGnome>().configuration.directory.Replace('/', Path.DirectorySeparatorChar) + "\\MethodInjector.dll";
-            }
-        }
-
-        internal Injector()
-        {
-            try
-            {
-                this._injectorMethod = Assembly.LoadFrom(DuckGame.othello7_mod.Injector.InjectorPath).GetType("MethodInjector.Injection").GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)[0];
-                if (this._injectorMethod == (MethodInfo)null)
-                    throw new NullReferenceException("InjectorMethod is null.");
-            }
-            catch (FileNotFoundException ex)
-            {
-                Program.LogLine("INJECTION ERROR: Unable to initialize injector. Missing " + "/MethodInjector.dll");
-                Program.LogLine(ex.Message + ex.StackTrace);
-            }
-            catch (NullReferenceException ex)
-            {
-                Program.LogLine("INJECTION ERROR: Unable to initialize injector. Could not get injector method, probably due to incompatible DLL format.");
-                Program.LogLine(ex.Message + ex.StackTrace);
-            }
-            catch (Exception ex)
-            {
-                Program.LogLine("INJECTION ERROR: Unable to initialize injector. Unknown error.");
-                Program.LogLine(ex.Message + ex.StackTrace);
-            }
-        }
-
-        internal void Inject(MethodInfo original, MethodInfo replacement)
-        {
-            try
-            {
-                if (original == (MethodInfo)null)
-                    Program.LogLine("INJECTION ERROR: Original method is null! Replacement: ");
-                else if (replacement == (MethodInfo)null)
-                    Program.LogLine("INJECTION ERROR: Replacement method is null! Original: ");
-                else
-                    this._injectorMethod.Invoke((object)null, new object[2]
-                    {
-            (object) original,
-            (object) replacement
-                    });
-            }
-            catch(System.NullReferenceException)
-            {
-                MessageBox.Show("THERE YA GO");
-            }
-        }
-    }
-    */
 }

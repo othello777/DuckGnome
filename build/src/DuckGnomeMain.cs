@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DuckGame;
+using DuckGame.src;
+using othello7_mod.src;
 
 namespace DuckGame.othello7_mod
 {
@@ -64,9 +66,13 @@ namespace DuckGame.othello7_mod
                 if (TeamSelect2.Enabled("CHAOSMODE", false) && validLevel)
                 {
                     this.chaosmode = true;
-                    doneDucks2.Clear();
+                }
+                if (TeamSelect2.Enabled("IMPOSTORMODE", false) && validLevel)
+                {
+                    this.sussyimpotor = true;
                 }
                 this.lastlevel = Level.current;
+                remixtimer = 0;
             }
             if (this.give_scp)
             {
@@ -163,10 +169,51 @@ namespace DuckGame.othello7_mod
                     this.give_scp = false;
                 }
             }
+            if (remixtimer < 180)
+                remixtimer++;
+            if (this.sussyimpotor && remixtimer == 180)
+            {
+                remixtimer++;
+
+                void swapweapon<T>(Thing replace)
+                {
+                    foreach (Thing thing in Level.current.things[typeof(T)])
+                    {
+                        if (Rando.Int(3) == 0)
+                        {
+                            replace.x = thing.x;
+                            replace.y = thing.y;
+                            Level.Add(replace);
+                            Level.Remove(thing);
+                        }
+                    }
+                }
+                swapweapon<DuelingPistol>(new SDP(0, 0));
+                swapweapon<NetGun>(new ShootySelf(0, 0));
+                swapweapon<DartGun>(new RivalGun(0, 0));
+                swapweapon<Sword>(new FakeSword(0, 0));
+                swapweapon<FlareGun>(new FlareSniper(0, 0));
+                swapweapon<ChestPlate>(new BombDuck(0, 0));
+                swapweapon<HugeLaser>(new DeathPistol(0, 0));
+                swapweapon<Phaser>(new OPlaser(0, 0));
+                swapweapon<CampingRifle>(new RockLauncher(0, 0));
+                swapweapon<Sniper>(new RockSniper(0, 0));
+                swapweapon<Shotgun>(new ShotGrenade(0, 0));
+                swapweapon<Bazooka>(new SuperBazooka(0, 0));
+                swapweapon<GrenadeLauncher>(new SmokeBlaster(0, 0));
+                swapweapon<Blunderbuss>(new SmokeBlaster(0, 0));
+                swapweapon<ChestPlate>(new SCP(0, 0));
+                swapweapon<AK47>(new TurboAk47(0, 0));
+                swapweapon<Rock>(new susej(0, 0));
+                swapweapon<PewPewLaser>(new SuperLaser(0, 0));
+            }
+
+            /*give_scp = false;
+            give_nade = false;
+            chaosmode = false;
+            sussyimpotor = false;*/
         }
-
-
-        // Token: 0x04000053 RID: 83
+     // Token: 0x04000053 RID: 83
         private static string[] blacklist_levels = new string[]
         {
             "DuckGame.TitleScreen",
@@ -188,6 +235,10 @@ namespace DuckGame.othello7_mod
         private bool give_nade;
 
         private bool chaosmode;
+
+        private bool sussyimpotor;
+
+        private int remixtimer;
 
         // Token: 0x04000057 RID: 87
         private List<Duck> doneDucks1;
