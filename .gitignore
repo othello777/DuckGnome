@@ -3,6 +3,7 @@ build/obj/
 build/othello7_mod.csproj.user
 build/packages.config
 build/packages/
+build/app.manifest
 othello7's_mod_compiled.dll
 othello7's_mod_compiled.hash
 Microsoft.Xna.Framework.Game.dll
