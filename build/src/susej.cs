@@ -31,6 +31,13 @@ namespace othello7_mod.src
 
         public override void OnPressAction()
         {
+            if((this.owner is WireMount))
+                DevConsole.Log("susej: Sorry, I'll implement this later");
+
+            if (this.duck == null)
+                return;
+
+
             SFX.Play((GetPath("SFX\\susejchoir.wav")), 20f, 0.0f, 0.0f, false);
             Profile profile = DevConsole.ProfileByName("player" + Rando.Int(1, 4));
             bool loop = true;
