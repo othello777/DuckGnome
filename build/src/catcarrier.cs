@@ -4,19 +4,14 @@ namespace DuckGame.src
     [EditorGroup("DuckGnome")]
     public class catcarrier : Holdable, IPlatform
     {
-        private Sprite _pickupSprite;
-        private Sprite _sprite;
-
         public catcarrier(float xval, float yval) : base(xval, yval)
         {
             //this.ammo = 1;
-            this.graphic = new Sprite("", 0f, 0f);
-            this._pickupSprite = new Sprite(this.GetPath("boomplate2.png"), 0f, 0f);
-            this._sprite = new Sprite(this.GetPath("boomplate2.png"), 0f, 0f);
-            this.center = new Vec2(6f, 18f);
-            this.collisionOffset = new Vec2(-8f, -3f);
-            this.collisionSize = new Vec2(16f, 9f);
-            this._holdOffset = new Vec2(-1f, 0f);
+            this.graphic = new Sprite(this.GetPath("catcarrier.png"));
+            this.center = new Vec2(6f, 6f);
+            this.collisionOffset = new Vec2(-4f, -6f);
+            this.collisionSize = new Vec2(18f, 14f);
+            this._holdOffset = new Vec2(-1f, -3f);
             //this._bio = "Best prop in the game";
             this._editorName = "Cat Carrier";
             this.physicsMaterial = PhysicsMaterial.Plastic;
@@ -29,7 +24,7 @@ namespace DuckGame.src
 
             this.duck.ThrowItem();
             this.velocity = new Vec2(velocity.x * 8, velocity.y);
-            DevConsole.Log("CCVelocity: " + this.velocity.ToString());
+            //DevConsole.Log("CCVelocity: " + this.velocity.ToString());
         }
 
         public override void OnImpact(MaterialThing with, ImpactedFrom from)
