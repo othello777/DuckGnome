@@ -1,28 +1,10 @@
 build/.vs/
+build/.idea
 build/obj/
 build/othello7_mod.csproj.user
 build/packages.config
 build/packages/
 build/app.manifest
-othello7's_mod_compiled.dll
-othello7's_mod_compiled.hash
-Microsoft.Xna.Framework.Game.dll
-Microsoft.Xna.Framework.Graphics.dll
 
 #bleh, build stuff
-CrashWindow.exe
-CrashWindow.exe.config
-CrashWindow.pdb
-DGInput.dll
-DGInput.pdb
-DGSteam.dll
-DGSteam.pdb
-DuckGame.exe
-DuckGame.exe.config
-DuckGame.pdb
-Microsoft.Xna.Framework.dll
-NAudio.dll
-NAudio.xml
-NVorbis.NAudioSupport.dll
-NVorbis.dll
 othello7_mod.dll

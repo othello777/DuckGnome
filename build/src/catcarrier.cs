@@ -9,7 +9,7 @@ namespace DuckGame.src
             //this.ammo = 1;
             this.graphic = new Sprite(this.GetPath("catcarrier.png"));
             this.center = new Vec2(6f, 6f);
-            this.collisionOffset = new Vec2(-4f, -6f);
+            this.collisionOffset = new Vec2(-4.5f, -6f);
             this.collisionSize = new Vec2(18f, 14f);
             this._holdOffset = new Vec2(-1f, -3f);
             //this._bio = "Best prop in the game";
